@@ -1,4 +1,6 @@
 package eam.app.modelo;
+import java.util.List;
+
 import org.hibernate.annotations.GeneratorType;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,11 +20,16 @@ public class City {
 	@Column(name = "nameCity")
 	private String nameCity;
 	
+	
+	//relaciones entre clases
 	@ManyToOne
 	@JoinColumn(name = "idDepartmen",referencedColumnName = "idDepartment")
 	private Department department;
 	
+	@OneToMany(mappedBy = "city")
+	private List<Hotel> hotels;
 	
+	// constructores
 	public City() {
 		
 	}

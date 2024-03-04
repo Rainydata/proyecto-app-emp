@@ -1,4 +1,6 @@
 package eam.app.modelo;
+import java.util.List;
+
 import org.hibernate.annotations.GeneratorType;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -30,6 +32,12 @@ public class Room {
 	@Column (name = "modsconsdetails")
 	private String modsconsdetails;
 	
+	
+	@OneToMany(mappedBy = "room")
+	private List<Booking> bookings;
+	
+	
+	// constructores
 	public Room() {
 		
 	}

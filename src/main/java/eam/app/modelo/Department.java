@@ -19,10 +19,14 @@ public class Department {
 	@Column(name = "nameDepartment")
 	private String nameDepartment;
 	
+	//relaciones entre clases
 	@OneToMany(mappedBy = "City")
 	private List<City> cities;
 	
+	@OneToMany(mappedBy = "department")
+	private List<Department> departments;
 	
+	//constructores
 	public Department() {
 		
 	}

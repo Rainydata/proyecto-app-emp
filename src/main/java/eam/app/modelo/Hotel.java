@@ -36,10 +36,29 @@ public class Hotel {
 	@Column(name = "image")
 	private byte[] image;
 	
+	//relaciones entre clases
 	
-	@OneToMany(mappedBy = "Guest")
-	private List <Guest> Guests;
+	@OneToMany(mappedBy = "hotel")
+	private List<Room> rooms;
 	
+	@OneToMany(mappedBy = "hotel")
+	private List<Booking> bookings;
+	
+	@OneToMany(mappedBy = "hotel")
+	private List<Invoice> invoices;
+	
+	@ManyToOne
+	@JoinColumn(name = "idCity", referencedColumnName = "idcity")
+	private City city;
+	
+	@OneToMany(mappedBy = "hotel")
+	private List<Employee> employees;
+	
+	@ManyToOne
+	@JoinColumn(name = "idDepartment", referencedColumnName = "idDepartment")
+	private Department departmen;
+	
+	//Constructores
 	public Hotel() {
 		
 	}
@@ -54,6 +73,7 @@ public class Hotel {
 		this.image = image;
 	}
 
+	//getter y setter
 	public long getIdHotel() {
 		return idHotel;
 	}
@@ -110,13 +130,31 @@ public class Hotel {
 		this.image = image;
 	}
 
-	public List<Guest> getGuests() {
-		return Guests;
+	public List<Room> getRooms() {
+		return rooms;
 	}
 
-	public void setGuests(List<Guest> guests) {
-		Guests = guests;
+	public void setRooms(List<Room> rooms) {
+		this.rooms = rooms;
 	}
+
+	public List<Booking> getBookings() {
+		return bookings;
+	}
+
+	public void setBookings(List<Booking> bookings) {
+		this.bookings = bookings;
+	}
+
+	public List<Invoice> getInvoices() {
+		return invoices;
+	}
+
+	public void setInvoices(List<Invoice> invoices) {
+		this.invoices = invoices;
+	}
+
+	
 	
 	
 }

@@ -2,6 +2,8 @@ package eam.app.modelo;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 import org.aspectj.lang.annotation.control.CodeGenerationHint;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,11 +27,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 		@Column (name = "userEmail")
 		private String userEmail;
 		
+		// relaciones entre clases
 		
-		@ManyToOne
-		@JoinColumn(name = "idRol", referencedColumnName = "idRol")
-		private User user;
+		@OneToMany(mappedBy = "user")
+		private List<Booking> bookings;
 		
+		@OneToMany(mappedBy = "user")
+		private List<Invoice> invoices;
+		
+		//constructores
 		public User() {
 		}
 		
@@ -73,16 +79,22 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 			this.userEmail = userEmail;
 		}
 
-		public User getUser() {
-			return user;
+		public List<Booking> getBookings() {
+			return bookings;
 		}
 
-		public void setUser(User user) {
-			this.user = user;
+		public void setBookings(List<Booking> bookings) {
+			this.bookings = bookings;
 		}
-		
-		
-		
+
+		public List<Invoice> getInvoices() {
+			return invoices;
+		}
+
+		public void setInvoices(List<Invoice> invoices) {
+			this.invoices = invoices;
+		}
+	
 	}
 	
 		

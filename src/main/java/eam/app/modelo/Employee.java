@@ -24,6 +24,10 @@ public class Employee {
 	@Column(name = "position")
 	private String position;
 	
+	@ManyToOne
+	@JoinColumn(name = "idHotel", referencedColumnName = "idHotel")
+	private Hotel hotel;
+	
 	public Employee() {
 		
 	}

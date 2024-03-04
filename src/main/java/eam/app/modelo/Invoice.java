@@ -21,6 +21,21 @@ public class Invoice {
 	@Column(name = "dateInvoice")
 	private Date dateInvoice;
 	
+	//relaciones entre clases 
+	
+	@ManyToOne
+	@JoinColumn(name = "idUser",referencedColumnName = "idUser")
+	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name = "idHotel",referencedColumnName = "idHotel")
+	private Hotel hotel;
+	
+	@OneToOne
+	@JoinColumn(name = "idBooking", referencedColumnName = "idBooking")
+	private Booking boohing;
+	
+	//constructores
 	public Invoice() {
 		
 	}

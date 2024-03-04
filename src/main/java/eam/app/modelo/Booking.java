@@ -3,6 +3,7 @@ import jakarta.persistence.*;
 
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -16,8 +17,8 @@ public class Booking {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idBooking;
 
-	@Column(name = "guestBooking")
-	private long guestBooking;
+	@Column(name = "userBooking")
+	private long usertBooking;
 	
 	@Column(name = "hotelBooking")
 	private long hotelBooking;
@@ -34,14 +35,33 @@ public class Booking {
 	@Column(name = "priceBooking")
 	private float priceBooking;
 	
+	//relaciones entre clases
+	
+	@ManyToOne
+	@JoinColumn(name = "idUser",referencedColumnName = "idUser")
+	private User users;
+	
+	@ManyToOne
+	@JoinColumn(name = "idHotel",referencedColumnName = "idHote")
+	private Hotel hotel;
+	
+	@OneToOne(mappedBy = "booking")
+	private Invoice invoice;
+	
+	@ManyToOne
+	@JoinColumn(name = "idRoom",referencedColumnName = "idRoom")
+	private Room idRoom;
+	
+	
+	//Contructor vacio y con params
 	public Booking() {
 		
 	}
 	
-	public Booking(long guestBooking, long hotelBooking,
+	public Booking(long userBooking, long hotelBooking,
 			Date entryDate, Date exitDate, boolean stateBooking,
 			float priceBooking) {
-		this.guestBooking = guestBooking;
+		this.usertBooking = userBooking;
 		this.hotelBooking = hotelBooking;
 		this.entryDate = entryDate;
 		this.exitDate = exitDate;
@@ -49,6 +69,8 @@ public class Booking {
 		this.priceBooking = priceBooking; 
 	}
 
+	
+	//getter y setter
 	public long getIdBooking() {
 		return idBooking;
 	}
@@ -57,12 +79,12 @@ public class Booking {
 		this.idBooking = idBooking;
 	}
 
-	public long getGuestBooking() {
-		return guestBooking;
+	public long getUserBooking() {
+		return usertBooking;
 	}
 
-	public void setGuestBooking(long guestBooking) {
-		this.guestBooking = guestBooking;
+	public void setUserBooking(long userBooking) {
+		this.usertBooking = userBooking;
 	}
 
 	public long getHotelBooking() {
